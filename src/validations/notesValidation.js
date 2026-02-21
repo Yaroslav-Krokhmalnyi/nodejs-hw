@@ -19,7 +19,7 @@ export const getAllNotesSchema = {
         'any.only':
           'Tag must be one of: work, personal, meeting, shopping, ideas, travel, finance, health, important, todo',
       }),
-    search: Joi.string().default('').messages({
+    search: Joi.string().allow('').default('').messages({
       'string.base': 'Search must be a string',
     }),
   }),
@@ -62,7 +62,7 @@ export const updateNoteSchema = {
     title: Joi.string().min(1).messages({
       'string.base': 'Search must be a string',
     }),
-    content: Joi.string().messages({
+    content: Joi.string().allow('').messages({
       'string.base': 'Content must be a string',
     }),
     tag: Joi.string()
