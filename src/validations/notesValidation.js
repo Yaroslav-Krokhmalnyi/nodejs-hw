@@ -1,5 +1,6 @@
 import { Joi, Segments } from 'celebrate';
 import { isValidObjectId } from 'mongoose';
+import { TAGS } from '../constants/tags.js';
 
 export const getAllNotesSchema = {
   [Segments.QUERY]: Joi.object({
@@ -13,18 +14,7 @@ export const getAllNotesSchema = {
       'number.max': 'perPage must be at most {#limit}',
     }),
     tag: Joi.string()
-      .valid(
-        'Work',
-        'Personal',
-        'Meeting',
-        'Shopping',
-        'Ideas',
-        'Travel',
-        'Finance',
-        'Health',
-        'Important',
-        'Todo',
-      )
+      .valid(...TAGS)
       .messages({
         'any.only':
           'Tag must be one of: work, personal, meeting, shopping, ideas, travel, finance, health, important, todo',
@@ -56,18 +46,7 @@ export const createNoteSchema = {
       'string.base': 'Content must be a string',
     }),
     tag: Joi.string()
-      .valid(
-        'Work',
-        'Personal',
-        'Meeting',
-        'Shopping',
-        'Ideas',
-        'Travel',
-        'Finance',
-        'Health',
-        'Important',
-        'Todo',
-      )
+      .valid(...TAGS)
       .messages({
         'any.only':
           'Tag must be one of: work, personal, meeting, shopping, ideas, travel, finance, health, important, todo',
@@ -87,18 +66,7 @@ export const updateNoteSchema = {
       'string.base': 'Content must be a string',
     }),
     tag: Joi.string()
-      .valid(
-        'Work',
-        'Personal',
-        'Meeting',
-        'Shopping',
-        'Ideas',
-        'Travel',
-        'Finance',
-        'Health',
-        'Important',
-        'Todo',
-      )
+      .valid(...TAGS)
       .messages({
         'any.only':
           'Tag must be one of: work, personal, meeting, shopping, ideas, travel, finance, health, important, todo',
